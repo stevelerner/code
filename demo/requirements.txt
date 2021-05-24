@@ -1,0 +1,5 @@
+splunk-opentelemetry[all]
+opentelemetry-api
+boto3
+requests
+flask
