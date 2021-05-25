@@ -3,8 +3,6 @@ import json
 import boto3
 from random import random, seed, randint
 
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('items')
 client = boto3.client('dynamodb')
 
 seed(1)
@@ -21,7 +19,7 @@ def catalog():
             TableName='items',
         )
     log_dict = {
-            'Catalog service: ': str(response["Item"]["item_desc"]["S"])
+            'catalog': str(response["Item"]["item_desc"]["S"])
             }
     return(log_dict)
 

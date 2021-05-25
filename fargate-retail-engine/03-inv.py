@@ -4,8 +4,6 @@ import boto3
 from random import random, seed, randint
 from time import sleep
 
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('items')
 client = boto3.client('dynamodb')
 
 seed(1)
@@ -22,7 +20,7 @@ def inventory():
             TableName='items',
         )
     log_dict = {
-        'Inventory': str(response["Item"]["item_desc"]["S"])
+        'inventory': str(response["Item"]["item_desc"]["S"])
         }
     y=round(random(),1)+.25
     sleep(y)
