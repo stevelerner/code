@@ -1,0 +1,1 @@
+aws ecs register-task-definition --cli-input-json file://retail-engine.json

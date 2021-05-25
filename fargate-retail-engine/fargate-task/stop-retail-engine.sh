@@ -1,0 +1,1 @@
+aws ecs delete-service --cluster test-cluster-fargate --service retail-engine --force

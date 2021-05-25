@@ -1,0 +1,129 @@
+{
+    "containerDefinitions": [
+        {
+            "name": "catalog",
+            "image": "docker.io/stevelerner/dplatform",
+            "environmentFiles": [
+                {
+                    "value": "arn:aws:s3:::fargateenvs/envs.env",
+                    "type": "s3"
+                }
+            ],
+            "entryPoint": [
+                "bash",
+                "-c"
+            ],
+            "command": [
+                "sh ./01-run-server.sh"
+            ],
+            "workingDirectory": "/home/code",
+            "dockerLabels": {
+                "app": "catalog"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ecs",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "catalog"
+                }
+            }
+        },
+        {
+            "name": "shopping-engine",
+            "image": "docker.io/stevelerner/dplatform",
+            "environmentFiles": [
+                {
+                    "value": "arn:aws:s3:::fargateenvs/envs.env",
+                    "type": "s3"
+                }
+            ],
+            "entryPoint": [
+                "bash",
+                "-c"
+            ],
+            "command": [
+                "sh ./02-run-synd.sh"
+            ],
+            "workingDirectory": "/home/code",
+            "dockerLabels": {
+                "app": "shopping-engine"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ecs",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "shopping-engine"
+                }
+            }
+            
+        },
+        {
+            "name": "inventory",
+            "image": "docker.io/stevelerner/dplatform",
+            "environmentFiles": [
+                {
+                    "value": "arn:aws:s3:::fargateenvs/envs.env",
+                    "type": "s3"
+                }
+            ],
+            "entryPoint": [
+                "bash",
+                "-c"
+            ],
+            "command": [
+                "sh ./03-run-inv.sh"
+            ],
+            "workingDirectory": "/home/code",
+            "dockerLabels": {
+                "app": "inventory"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ecs",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "shopping-engine"
+                }
+            }
+        },
+        {
+            "name": "shopper-syndication",
+            "image": "docker.io/stevelerner/dplatform",
+            "environmentFiles": [
+                {
+                    "value": "arn:aws:s3:::fargateenvs/envs.env",
+                    "type": "s3"
+                }
+            ],
+            "entryPoint": [
+                "bash",
+                "-c"
+            ],
+            "command": [
+                "sh ./04-run-client.sh"
+            ],
+            "workingDirectory": "/home/code",
+            "dockerLabels": {
+                "app": "shopper-syndication"
+            },
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "ecs",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "shopping-engine"
+                }
+            }
+        }
+    ],
+    "family": "retail-engine",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::668132022375:role/ECS-task-full-access",
+    "requiresCompatibilities": [
+    "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
