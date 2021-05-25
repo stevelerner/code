@@ -1,8 +1,7 @@
 FROM python:slim
 RUN mkdir /home/code
 WORKDIR /home/code
-COPY ../*.py /home/code/
-COPY ../*.sh /home/code/
+COPY . /home/code/
 RUN apt-get update && \
     export PATH="$HOME/.local/bin:$PATH" && \
     apt install -y python3-pip && \
