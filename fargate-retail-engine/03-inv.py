@@ -1,13 +1,13 @@
 from flask import Flask, make_response, request
+from random import random, seed, randint, uniform
+from time import sleep
 import json
 import boto3
-from random import random, seed, randint
-from time import sleep
 
 client = boto3.client('dynamodb')
 
-seed(1)
 app = Flask(__name__)
+seed(1)
 
 @app.route('/inventory', methods=['GET', 'POST'])
 def inventory():
@@ -22,9 +22,9 @@ def inventory():
     log_dict = {
         'inventory': str(response["Item"]["item_desc"]["S"])
         }
-    y=round(random(),1)+.25
-    sleep(y)
 
+    y = uniform(0,.1)
+    sleep(y)
     return(log_dict)
 
 if __name__ == '__main__':

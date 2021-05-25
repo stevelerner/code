@@ -1,9 +1,12 @@
 from flask import Flask, make_response, request
+from random import random, seed, randint, uniform
+from time import sleep
 import requests
 import json
-import pprint
+import boto3
 
 app = Flask(__name__)
+seed(1)
 
 catalogurl = 'http://localhost:5000/catalog'
 invservice = 'http://localhost:4997/inventory'
@@ -37,6 +40,10 @@ def shopengine():
         log_dict = {'error': str(err),   
             }
         print(json.dumps(log_dict))
+
+    y = uniform(0,.1)
+    sleep(y)
+
     return(inv)
 
 if __name__ == '__main__':

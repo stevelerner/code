@@ -1,6 +1,6 @@
-import requests
+from random import seed, uniform
 from time import sleep
-from random import random, seed
+import requests
 import json
 
 seed(1)
@@ -23,6 +23,5 @@ def pythonrequests():
 
 while True:
     pythonrequests()
-    y = random()
-    #print('Sleeping: ', round(y,2))
-    sleep(round(y,2))
+    y = uniform(0,.25)
+    sleep(y)
