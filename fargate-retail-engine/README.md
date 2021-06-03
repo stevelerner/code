@@ -5,6 +5,7 @@ Environment variables must be in a file in S3- the Task shows the example locati
 * OpenTelemetry Collector address
 * Splunk credentials if using Splunk Observability
 
-Start the Fargate task to enable the four example microservices.
 
-Requires DynamoDB populated by the example data generators in the Tools directory
+Requires DynamoDB populated by the example `itemtable` data generator in the Tools directory
+
+Start the Fargate task to enable the four example microservices.
