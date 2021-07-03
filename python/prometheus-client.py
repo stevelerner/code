@@ -1,3 +1,4 @@
+# pip3 install prometheus_client
 from prometheus_client import start_http_server, Summary, Gauge
 import random
 import time
